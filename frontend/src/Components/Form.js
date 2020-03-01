@@ -1,11 +1,20 @@
-import React from 'react';
+import React from "react";
+class Form extends React.Component {
+  state = {
+      value: 'Obesity'
+    }
 
-function Form() {
+  render() {
   return (
-    <div className="App">
-    <h1>He</h1>
-    </div>
+    <form onSubmit={this.props.handleSubmit.bind(this)}>
+      <label>
+        Enter Symptoms:
+        <textarea value={this.state.value}
+        onChange={this.props.handleChange.bind(this)} />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
   );
+  }
 }
-
 export default Form;

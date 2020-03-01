@@ -16,8 +16,11 @@ SECRET_KEY = '2)k36i+jx-e)0fv$y_q67bk+)8ju@vfzjdcqbin*f$3_vaxp+f'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_NAME = "X-CSRF-Token"
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 # Application definition
 
 INSTALLED_APPS = [
@@ -29,10 +32,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'disorders',
     'rest_framework',
-    'django_filters'
+    'django_filters',
+    'corsheaders',
 ]
 
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
