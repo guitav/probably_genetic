@@ -7,8 +7,9 @@ import Cookies from 'js-cookie'
 
 class App extends Component {
   state = {
-    value: "",
-    entered_text: ""
+    value: "Obesity",
+    entered_text: "",
+    disorders: null
   };
   handleSubmit(event) {
     event.preventDefault();
@@ -20,8 +21,11 @@ class App extends Component {
         'X-CSRF-Token': csrftoken
       }
     }})
-    .then(response => {
-      console.log("HERE")
+    .then(response => response)
+    .then(data => {
+      this.setState({
+        disorders: data.data
+      })
     })
     .catch(error => console.log(error));
   }
@@ -31,12 +35,20 @@ class App extends Component {
   }
 
   render() {
+    let view  = null
+    if  (this.state.disorders){
+        view = Object.keys(this.state.disorders).map(disorderkey => {
+          return [...this.state.disorders[disorderkey].disorders__name]
+        })
+      }
     return (
       <div className="App">
         <Form
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
+          value={this.state.value}
+          handleSubmit={this.handleSubmit.bind(this)}
+          handleChange={this.handleChange.bind(this)}
         />
+        {view}
       </div>
     );
   }

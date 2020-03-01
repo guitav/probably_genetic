@@ -18,6 +18,9 @@ class Symptoms(models.Model):
     name = models.CharField(max_length=100)
     disorders = models.ManyToManyField('Disorder', blank=False)
 
+    def __str__(self):
+        return (self.name)
+
 
 class Disorder(models.Model):
     name = models.CharField(max_length=100)

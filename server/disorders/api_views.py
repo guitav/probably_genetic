@@ -28,7 +28,7 @@ class SymptomsList(ListAPIView):
     queryset = Symptoms.objects.all()
     serializer_class = SymptomsSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('id',)
+    # filter_fields = ('id',)
     fields = ('name')
     pagination_class = SymptomsPagination
 

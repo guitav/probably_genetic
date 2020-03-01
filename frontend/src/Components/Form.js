@@ -6,10 +6,10 @@ class Form extends React.Component {
 
   render() {
   return (
-    <form onSubmit={this.props.handleSubmit.bind(this)}>
+    <form onSubmit={this.props.handleSubmit}>
       <label>
         Enter Symptoms:
-        <textarea value={this.state.value}
+        <textarea value={this.props.value}
         onChange={this.props.handleChange.bind(this)} />
       </label>
       <input type="submit" value="Submit" />
