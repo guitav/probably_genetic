@@ -14,8 +14,7 @@ COPY ./ /usr/src/app/
 EXPOSE 8000
 WORKDIR /usr/src/app/frontend
 RUN apk add --update nodejs nodejs-npm
-RUN npm install
-RUN apk add yarn
+RUN npm install && apk add yarn
 RUN yarn build
 WORKDIR /usr/src/app/server
 RUN ./manage.py migrate
