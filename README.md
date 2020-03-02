@@ -5,7 +5,7 @@ Local Build w/ Docker:
  git  clone
  cd probably_genetics
  docker-compose build
- docker-compose  up
+ docker-compose up -e NODE_ENV=dev // Need to specify dev environment variable since default to production in docke-compose yaml
  ```
  localhost:8080 should be up and running
  if requests do not work try clearing cookies/private browser
@@ -46,3 +46,8 @@ Stack:
 - frontend: React
 - backend: Django
 - server: gunicorn
+
+# To Do :
+copy what you have and then go inside docker container and manually change
+the information
+have  to do all of the manage commands

@@ -23,6 +23,7 @@ class Command(BaseCommand):
             disorders.save()
             for association in associations:
                 name = association.find('.//HPOTerm').text
+                freq = association.find('.//HPOFrequency/Name').text
                 symptom, created = Symptoms.objects.get_or_create(name=name)
                 symptom.disorders.add(disorder)
                 symptom.save()
