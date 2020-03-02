@@ -6,16 +6,19 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import LimitOffsetPagination
 
 
-class SymptomsPagination(LimitOffsetPagination):
+class ViewPagination(LimitOffsetPagination):
     default_limit = 2
     max_limit = 5
 
 
 class DisorderList(ListAPIView):
+    """ View disorders
+        able to filter by name 
+    """
     queryset = Disorders.objects.all()
     serializer_class = DisorderSerializer
     fields = ('name')
-    pagination_class = SymptomsPagination
+    pagination_class = ViewPagination
 
     def get_queryset(self):
         name = self.request.query_params.get('name', None)
@@ -36,7 +39,7 @@ class SymptomsList(ListAPIView):
     serializer_class = SymptomsSerializer
     filter_backends = (DjangoFilterBackend,)
     fields = ('name')
-    pagination_class = SymptomsPagination
+    pagination_class = ViewPagination
 
     def get_queryset(self):
         name = self.request.query_params.get('name', None)

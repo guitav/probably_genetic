@@ -14,10 +14,7 @@ SECRET_KEY = '2)k36i+jx-e)0fv$y_q67bk+)8ju@vfzjdcqbin*f$3_vaxp+f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = ['backend', 'localhost:8000',
-                 'backend:8000', 'localhost:8080',
-                 'backend:8080', 'localhost', '127.0.0.1', '[::1]',
-                 'ec2-3-80-140-96.compute-1.amazonaws.com']
+ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = False
@@ -85,7 +82,7 @@ WSGI_APPLICATION = 'server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 

@@ -1,6 +1,14 @@
 version: '3'
 services:
+  db:
+    image: nouchka/sqlite3:latest
   backend:
     build: ./
     ports:
       - "8080:8080"
+    environment:
+      - NODE_ENV:prod
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app/
