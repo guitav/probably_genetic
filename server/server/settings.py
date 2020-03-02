@@ -15,7 +15,7 @@ SECRET_KEY = '2)k36i+jx-e)0fv$y_q67bk+)8ju@vfzjdcqbin*f$3_vaxp+f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['backend', 'localhost:8000']
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_NAME = "X-CSRF-Token"
@@ -117,6 +117,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/django_static/'
+STATIC_URL = '/static/'
 
-FRONTEND_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", "frontend", "build"))
+FRONTEND_ROOT = os.path.abspath(os.path.join("..", "frontend", "public"))

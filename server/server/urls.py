@@ -11,6 +11,7 @@ urlpatterns = [
     path('api/v1/disorders', disorders.api_views.DisorderList.as_view()),
     path('api/v1/symptoms', disorders.api_views.SymptomsList.as_view()),
     path('api/v1/forms', disorders.query_symptoms.QueryList.as_view()),
+    # path('', serve, {'document_root': settings.FRONTEND_ROOT})
     re_path(r'^(?P<path>.*)', serve, {'document_root': settings.FRONTEND_ROOT})
 
 ]
