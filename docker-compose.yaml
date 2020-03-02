@@ -6,7 +6,5 @@ services:
       - "8080:8080"
     environment:
       - NODE_ENV:prod
-    depends_on:
-      - db
     volumes:
       - .:/usr/src/app/
