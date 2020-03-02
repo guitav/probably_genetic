@@ -10,6 +10,12 @@ COPY ./server/requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r ./requirements.txt
 
 COPY ./ /usr/src/app/
-EXPOSE 8080
+
+EXPOSE 8000
+WORKDIR /usr/src/app/frontend
+RUN npm install
+RUN apk add yarn
+RUN yarn build
 WORKDIR /usr/src/app/server
-CMD gunicorn server.wsgi:application
+RUN python3 manage.py migrate
+CMD ["gunicorn", "server.wsgi:application", "--bind" ,"0.0.0.0:8080"]

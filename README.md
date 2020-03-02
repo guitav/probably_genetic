@@ -10,16 +10,18 @@ Local Build w/ Docker:
  Local Build w/ separate services
  ```
  cd frontend
+ npm install
  yarn build
  cd ..
  cd server
  virtualenv env
  source env/bin/activate
- pip install -r requirements
+ pip3 install -r requirements
+ ./manage.py migrate
  ./manage.py collectstatic --no-input
  gunicorn server.wsgi:application --bind 0.0.0.0:8080
  ```
-
+# Does not work on mobile
 # set up to be able to query by multiple disorders,
 # filter by the overlapping
 # intersection of multiple lists
