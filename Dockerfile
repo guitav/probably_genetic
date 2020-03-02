@@ -19,4 +19,7 @@ RUN apk add yarn
 RUN yarn build
 WORKDIR /usr/src/app/server
 RUN python3 manage.py migrate
+RUN python3 manage.py makemigrations
+RUN python3 manage.py load_disorders
+RUN python3 manage.py collectstatic --no-input
 CMD ["gunicorn", "server.wsgi:application", "--bind" ,"0.0.0.0:8080"]
