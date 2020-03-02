@@ -13,17 +13,27 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2)k36i+jx-e)0fv$y_q67bk+)8ju@vfzjdcqbin*f$3_vaxp+f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['backend', 'localhost:8000']
+ALLOWED_HOSTS = ['backend', 'localhost:8000',
+                 'backend:8000', 'localhost:8080',
+                 'backend:8080', 'localhost', '127.0.0.1', '[::1]']
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-CSRF_COOKIE_NAME = "X-CSRF-Token"
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONL = False
 # Application definition
+BACKEND_DIR = BASE_DIR  # rename variable for clarity
+FRONTEND_DIR = os.path.abspath(
+    os.path.join(BACKEND_DIR, '..', 'frontend'))
+
+# modify the definition of DEBUG and ALLOWED_HOSTS
+DEBUG = True
+ALLOWED_HOSTS = ['localhost']
+
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,12 +48,12 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -54,7 +64,7 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(FRONTEND_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,7 +126,23 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+# STATIC_URL = '/static/'
+# # The absolute path to the directory where collectstatic will collect static files for deployment.
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend')
+# REACT_APP_DIR_TEST = os.path.join(REACT_APP_DIR)
+# STATICFILES_DIRS = [
+#     os.path.join(REACT_APP_DIR, 'build', 'static')
+# ]
+STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static')]
 
-STATIC_URL = '/static/'
+STATICFILES_STORAGE = (
+    'whitenoise.storage.CompressedManifestStaticFilesStorage')
 
-FRONTEND_ROOT = os.path.abspath(os.path.join("..", "frontend", "public"))
+STATIC_ROOT = os.path.join(BACKEND_DIR, 'static')
+
+STATIC_URL = '/static/'  # already declared in the default settings
+
+WHITENOISE_ROOT = os.path.join(FRONTEND_DIR, 'build')
+# The URL to use when referring to static files (where they will be served from)
+# FRONTEND_ROOT = os.path.abspath(os.path.join("..", "frontend", "public"))

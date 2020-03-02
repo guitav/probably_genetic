@@ -8,19 +8,11 @@ import Cookies from 'js-cookie'
 class App extends Component {
   state = {
     value: "Obesity",
-    entered_text: "",
     disorders: null
   };
   handleSubmit(event) {
     event.preventDefault();
-    var csrftoken = Cookies.get('csrftoken');
-    let query = encodeURIComponent("?name")+"="+encodeURIComponent(this.state.value)
-    axios.post('/api/v1/forms', {data : this.state.value},
-    {headers: {
-      common: {
-        'X-CSRF-Token': csrftoken
-      }
-    }})
+    axios.post('server/api/v1/forms', {data : this.state.value})
     .then(response => response)
     .then(data => {
       this.setState({
@@ -38,9 +30,13 @@ class App extends Component {
     let view  = null
     if  (this.state.disorders){
         view = Object.keys(this.state.disorders).map(disorderkey => {
-          return [...this.state.disorders[disorderkey].disorders__name]
+          return <h4>{this.state.disorders[disorderkey].disorders__name}</h4>
         })
+        if (!view.length){
+          view = <h3>No results</h3>
+        }
       }
+
     return (
       <div className="App">
         <Form
