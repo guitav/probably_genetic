@@ -46,10 +46,11 @@ Stack:
 Missing Cases:  
 - Misspelling of words is not taken account for (i.e. siezures instead of seizures)
 - Some symptoms are two words together (long neck); need to account for common words seen together  (i.e. find way to  not separate the two; parse through the database first and see if those are in the input vs check if the input is in the db?)
-- Should take into cache of someone's previous lookups and combine  with new lookups
-- Description of a symptom instead of actual symptom name (when they user does not know the technical term for a symptom)
-- Numbers need to be turned into characters (or vice versa/ just need common way to represent numbers)
-- Numbers can not be tokenized without it's following word (the number before the  word should be accounted for together)
-- Stemming (seizures/seizure)
+- If someone is a recurring user, there should be a way to take into  account their previous lookups with current lookups to get combination of their symptoms for more accurate disorder
+- Someone might not know actual name of their symptom and instead have a description of it; there  should be way to have definition matches with symptom so all of the description words should be substituted with actual symptom
+- Number  inputs should be turned into characters (or vice versa/ just need common way to represent numbers with database and input)
+- Numbers can not be tokenized without its following word (the number before the  word should be accounted for together since number is typically a description)
+- Similar for all adjectives; they should be combined with the following term  so can be more accurate representation
+- Stemming needs to be taken into account (seizures/seizure)
 - If two disorders have the same likelihood -- how to determine which is more likely (take into account which disorder is more common)
-- Take into account the frequency of the symptoms with relation to the order they appear of the input
+- Take into account the frequency of the symptoms with relation to the order they appear of the input?
