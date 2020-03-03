@@ -43,8 +43,13 @@ Stack:
 - backend: Django
 - server: gunicorn
 
-Some Edge Cases:  
+Missing Cases:  
 - Misspelling of words is not taken account for (i.e. siezures instead of seizures)
+- Some symptoms are two words together (long neck); need to account for common words seen together  (i.e. find way to  not separate the two; parse through the database first and see if those are in the input vs check if the input is in the db?)
 - Should take into cache of someone's previous lookups and combine  with new lookups
-- Description of a symptom instead of actual symptom name (when they user is unsure of the word)
-- Currently seizures/seizure still need to be changed
+- Description of a symptom instead of actual symptom name (when they user does not know the technical term for a symptom)
+- Numbers need to be turned into characters (or vice versa/ just need common way to represent numbers)
+- Numbers can not be tokenized without it's following word (the number before the  word should be accounted for together)
+- Stemming (seizures/seizure)
+- If two disorders have the same likelihood -- how to determine which is more likely (take into account which disorder is more common)
+- Take into account the frequency of the symptoms with relation to the order they appear of the input
