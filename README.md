@@ -40,4 +40,4 @@ Edge Cases:
 - Misspelling of words is not taken account for (i.e. siezures instead of seizures)
 - Should take into cache of someone's previous lookups and combine  with new lookups
 - Description of a symptom instead of actual symptom name (when they user is unsure of the word)
--
+- Currently seizures/seizure still need to be changed
