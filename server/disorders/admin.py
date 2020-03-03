@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import Disorders
+from .models import Disorder
 
 
-@admin.register(Disorders)
+@admin.register(Disorder)
 class DisorderAdmin(admin.ModelAdmin):
     list_display = ['name']

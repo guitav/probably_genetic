@@ -7,6 +7,7 @@ frontend/build/
 .pnp
 .pnp.js
 
+*migrations*
 # testing
 /coverage
 
@@ -38,3 +39,4 @@ db.sqlite3
 db.sqlite3-journal
 media
 server/static*
+server/disorders/migrations*

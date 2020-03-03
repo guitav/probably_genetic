@@ -36,7 +36,6 @@ class App extends Component {
           view = <h3>No results</h3>
         }
       }
-
     return (
       <div className="App">
         <Form
