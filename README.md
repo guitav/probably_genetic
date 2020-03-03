@@ -1,14 +1,16 @@
 Link: http://ec2-3-80-140-96.compute-1.amazonaws.com:8080/
-Need npm and node installed
 
- Local Build w/ separate services
- Frontend
+###### Local Build
+
+Need npm and node for frontend
+###### Frontend
  ```
  cd frontend
  npm install
  npm run build
  npm run start
  ```
+ ###### Backend
  In separate terminal
  Note: loading the data might take some time since it is sqllite
  ```
@@ -24,9 +26,14 @@ Need npm and node installed
  // Able to search disorders by =name?
  localhost:8080/server/api/v1/symptoms
  // Able to search symptoms by =name?
- To just try and curl
+
+ Curl Command:
 ```
 curl 'http://localhost:8080/server/api/v1/forms' --data-binary '{"data":"Obesity"}'
+```
+or from production
+```
+curl 'http://ec2-3-80-140-96.compute-1.amazonaws.com:8080/' --data-binary '{"data":"Obesity"}'
 ```
 Issues:
 - Turned off xcsrf token for posts
@@ -36,7 +43,7 @@ Stack:
 - backend: Django
 - server: gunicorn
 
-Edge Cases:  
+Some Edge Cases:  
 - Misspelling of words is not taken account for (i.e. siezures instead of seizures)
 - Should take into cache of someone's previous lookups and combine  with new lookups
 - Description of a symptom instead of actual symptom name (when they user is unsure of the word)
