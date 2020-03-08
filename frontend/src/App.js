@@ -12,7 +12,7 @@ class App extends Component {
   };
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('server/api/v1/forms', {data : this.state.value})
+    axios.post('server/api/v1/search', {data : this.state.value})
     .then(response => response)
     .then(data => {
       this.setState({
@@ -30,7 +30,7 @@ class App extends Component {
     let view  = null
     if  (this.state.disorders){
         view = Object.keys(this.state.disorders).map(disorderkey => {
-          return <h4>{this.state.disorders[disorderkey].disorders__name}</h4>
+          return <ul>{this.state.disorders[disorderkey].disorders__name}</ul>
         })
         if (!view.length){
           view = <h3>No results</h3>
@@ -43,6 +43,7 @@ class App extends Component {
           handleSubmit={this.handleSubmit.bind(this)}
           handleChange={this.handleChange.bind(this)}
         />
+      
         {view}
       </div>
     );
