@@ -29,7 +29,7 @@ Need npm and node for frontend
 
  Curl Command:
 ```
-curl 'http://localhost:8080/server/api/v1/forms' --data-binary '{"data":"Obesity"}'
+curl 'http://localhost:8000/server/api/v1/search' --data-binary '{"data":"Obesity"}'
 ```
 or from production
 ```
@@ -54,3 +54,5 @@ Missing Cases:
 - Stemming needs to be taken into account (seizures/seizure)
 - If two disorders have the same likelihood -- how to determine which is more likely (take into account which disorder is more common)
 - Take into account the frequency of the symptoms with relation to the order they appear of the input?
+- Phrases with dashes can be represented in different ways; ('2-3' could be '2/3' or '2 or 3' or '2 and 3' or '2 3')
+- gensim word2vec: knowing how to tokenize the word // or nltk BigramCollocationFinder to  read thru text and find commonalities 

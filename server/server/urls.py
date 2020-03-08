@@ -9,9 +9,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('server/api/v1/disorders', disorders.api_views.DisorderList.as_view()),
-    path('server/api/v1/symptoms', disorders.api_views.SymptomsList.as_view()),
-    path('server/api/v1/forms', disorders.query_symptoms.QueryContains.as_view()),
+    path('server/api/v1/disorder', disorders.api_views.Disorder.as_view()),
+    path('server/api/v1/symptom', disorders.api_views.Symptom.as_view()),
+    path('server/api/v1/search', disorders.query_symptoms.Search.as_view()),
     re_path(r'', views.catchall)
 ]
 urlpatterns += staticfiles_urlpatterns()
